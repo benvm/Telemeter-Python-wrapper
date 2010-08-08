@@ -1,0 +1,16 @@
+Telemeter Python wrapper
+-------------------------
+
+This project is a collection of python classes that wrap the public SOAP API 
+for the Telemeter service of the Belgian Telenet ISP.
+
+I am writing this wrapper because I intend on writing a few utility applications
+using this API. Currently I have plans for:
+
+- a commandline tool
+- a gnome panel widget
+- a Boxee app
+
+If you would like to use this wrapper for other applications feel free to do so.
+If you do, I would appreciate it if you keep me up to date about your project by
+sending me an email at steven.v.bael@gmail.com. 
