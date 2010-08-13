@@ -15,8 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with Telemeter Python wrapper.  If not, see <http://www.gnu.org/licenses/>.
 
-from datetime import date, datetime
+from datetime import date, datetime, time
 from xml.dom import minidom
+import dateutil.parser
 import urllib
 import urllib2
 import base64
@@ -67,5 +68,7 @@ class TelemeterService:
         # get simple fields
         self.usageData.limit = int(xmldoc.getElementsByTagName("Limit")[0].childNodes[0].data)
         self.usageData.totalUsage = int(xmldoc.getElementsByTagName("TotalUsage")[0].childNodes[0].data)
+        self.usageData.unit = xmldoc.getElementsByTagName("Unit")[0].childNodes[0].data
+        self.timestamp = dateutil.parser.parse(xmldoc.getElementsByTagName("Timestamp")[0].childNodes[0].data)
 
         return self.usageData
