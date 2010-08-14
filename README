@@ -14,3 +14,14 @@ using this API. Currently I have plans for:
 If you would like to use this wrapper for other applications feel free to do so.
 If you do, I would appreciate it if you keep me up to date about your project by
 sending me an email at steven.v.bael@gmail.com. 
+
+How to use the api
+------------------
+
+- Include the TelemeterService.py file in your project and import TelemeterService
+where you need it.
+- Create a new instance of the TelemeterService class:
+    service = TelemeterService("username", "password")
+- Fetch the data:
+    response = service.fetchData()
+- The returned response will be an instance of the TelemeterUsageData class
