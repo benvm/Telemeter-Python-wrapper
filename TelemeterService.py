@@ -71,4 +71,13 @@ class TelemeterService:
         self.usageData.unit = xmldoc.getElementsByTagName("Unit")[0].childNodes[0].data
         self.timestamp = dateutil.parser.parse(xmldoc.getElementsByTagName("Timestamp")[0].childNodes[0].data)
 
+        # get daily usage data for 30 days
+        days = xmldoc.getElementsByTagName("DailyUsage")
+        for xmlDay in days:
+            usage = TelemeterDailyUsageData()
+            daystr = xmlDay.childNodes[0].childNodes[0].data
+            usage.day = date(int(daystr[0:4]),int(daystr[5:7]),int(daystr[8:10]))
+            usage.usage = xmlDay.childNodes[1].childNodes[0].data
+            self.usageData.dailyUsage.append(usage)
+
         return self.usageData
