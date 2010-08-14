@@ -25,3 +25,20 @@ where you need it.
 - Fetch the data:
     response = service.fetchData()
 - The returned response will be an instance of the TelemeterUsageData class
+
+How to use TelemeterCli.py
+--------------------------
+TelemeterCli is a commandline tool that fetches your telemeter data and displays
+it on screen. 
+
+- Make sure both TelemeterCli.py and TelemeterService.py are in the same directory
+- Edit TelemeterCli.py and change the username and password fields in one of the
+first lines.
+- Run "python TelemeterCli.py" 
+
+TODO
+----
+
+- Add exception handling for both TelemeterService.py and TelemeterCli.py
+- Add commandline arguments to TelemeterCli so the output is configurable
+    (data unit, what values to display)
