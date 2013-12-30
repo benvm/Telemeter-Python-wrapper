@@ -1,8 +1,6 @@
 from TelemeterService import TelemeterService, TelemeterVolumeData, TelemeterFUPData
 import sys
 
-username = "username"
-password = "password"
 
 def handleResponse(response):
     
@@ -29,9 +27,15 @@ def handleResponse(response):
 
     else:
         print "Error: No valid response retrieved"
-        
+
 # script entrypoint
 
+if len(sys.argv) < 3:
+    print "usage: TelemeterCli.py username password"
+    sys.exit()
+    
+username = sys.argv[1]
+password = sys.argv[2]
 
 try:
     service = TelemeterService(username, password)
