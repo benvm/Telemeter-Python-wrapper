@@ -1,0 +1,44 @@
+#!/usr/bin/python3
+# 
+# Script that can be used to display telemeter data in conky
+# Call with ${execpi 1800 telemeter-conky 'username' 'password'}
+# Don't set the update interval too small, the server doesn't like that
+# Data only gets updated every 30 minutes anyway
+# Adjust the print() statements to your liking
+
+
+from TelemeterService import TelemeterService, TelemeterVolumeData, TelemeterFUPData
+import sys
+import os
+import getpass
+
+
+def handleResponse(response):
+    
+    if isinstance(response, TelemeterVolumeData):
+        print ("$goto 32}used / limit:${alignr}", str(response.totalUsage), '/', str(response.limit), response.unit)
+    
+    elif isinstance(response, TelemeterFUPData):
+        print ("${goto 32}update:${alignr}", str(response.lastUpdate))
+        print ("${goto 32}min / max:${alignr}", str(response.minUsage), "/", str(response.maxUsage), response.unit)
+        print ("${goto 32}used:${alignr}", str(response.totalUsage), response.unit)
+        print ("${goto 32}status:${alignr}", response.status)
+
+    else:
+        print ("Error")
+
+
+if len(sys.argv) < 3:
+    print ("Error: no credentials")
+    sys.exit()
+else:
+    username = sys.argv[1]
+    password = sys.argv[2]
+
+try:
+    service = TelemeterService(username, password)
+    response = service.fetchData()
+    handleResponse(response)
+except Exception as ex:
+    print ("Error")
+    print ("Error:", ex, file=sys.stderr)
