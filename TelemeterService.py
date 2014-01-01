@@ -23,24 +23,23 @@ from datetime import datetime
 from urllib.request import urlopen, Request
 import base64
 
-# contains traffic data for one day
+
 class TelemeterDailyUsageData:
     day = date.today()
     usage = 0
 
 
-# contains the full response data
-class TelemeterVolumeData:
+class TelemeterData:
     timestamp = None
-    timestampExpired = None
+    expiryTimestamp = None
+    
+class TelemeterVolumeData(TelemeterData):
     unit = None
     limit = 0
     totalUsage = 0
     dailyUsage = []
     
-class TelemeterFUPData:
-    timestamp = None
-    expiryTimestamp = None
+class TelemeterFUPData(TelemeterData):
     lastUpdate = None
     unit = None
     minUsage = 0
