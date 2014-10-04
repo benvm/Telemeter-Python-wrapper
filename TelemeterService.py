@@ -134,7 +134,7 @@ class TelemeterService:
             
 
             # get daily usage data for 30 days
-            days = vol.getElementsByTagName("DailyUsage")
+            days = volume.getElementsByTagName("DailyUsage")
             for xmlDay in days:    
                 usage = TelemeterDailyUsageData()
                 daystr = xmlDay.childNodes[0].childNodes[0].data
